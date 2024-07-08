@@ -19,7 +19,7 @@ jobs:
             nodejs_version: [18, 19, 20]
             os: [ubuntu-latest, macos-latest]
             exclude:
-            - nodejs_version: 19
+            - nodejs_version: [19, 20]
               os: macos-latest
         runs-on: ${{matrix.os}}
         steps:
@@ -41,3 +41,27 @@ jobs:
           with:
             name: Mocha-Test-Result
             path: test-results.xml
+
+    code-coverage:
+      name: Code Coverage
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      
+      - name: Setup NodeJS v18
+        uses: actions/Setup-Node@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm run coverage
+      
+      - name: Check Code Coverage
+        run: npm run coverage
+
+      - name: Archive Test Result
+        uses: actions/upload-artifact@v3
+        with:
+          name: Code-Coverage-Result
+          path: coverage
+          retention-days: 5 
