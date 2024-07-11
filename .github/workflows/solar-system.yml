@@ -208,4 +208,8 @@ jobs:
           --from-literal=MONGO_PASSWORD=${{secrets.MONGO_PASSWORD}} \
           --save-config \
           --dry-run=client \
-          -o yaml > mongo-db-creds.yaml | kubectl apply -f mongo-db-creds.yaml
+          -o yaml > mongo-db-creds.yaml 
+
+      - name: check yaml file
+        run: |
+          cat mongo-db-creds.yaml
