@@ -172,7 +172,7 @@ jobs:
         uses: azure/k8s-set-context@v3
         with:
           method: kubeconfig
-          kubeconfig: ${{secrets.RUN_2_KUBECONFIGG}}
+          kubeconfig: ${{secrets.RUN_KUBECONFIG}}
       - name: Fetch K8s Cluster info
         run: |
           kubectl version --short
