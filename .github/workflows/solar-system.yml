@@ -184,12 +184,11 @@ jobs:
         run: |
            echo "INGRESS_IP=172.232.90.200" >> "$GITHUB_ENV"
 #          echo "INGRESS_IP=$(kubectl -n ingress-nginx get svc ingress-nginx-controller -o jsonpath ="{.status.loadbalancer.igress[0].ip}")" >> "$GITHUB_ENV"
-        if: always()
 
       - name: Replace Tokens in Manifests
         uses: cschleiden/replace-tokens@v1
         with:
-          tokenPrfix: '_{_'
+          tokenPrefix: '_{_'
           tokenSuffix: '_}_'
           files: '["kubernetes/development.yaml"]'
         env:
