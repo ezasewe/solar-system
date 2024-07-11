@@ -192,7 +192,7 @@ jobs:
         id: get_ingress_host_url
         run: |
           echo "APP_INGRESS_HOST=solar-system-development.172.232.90.200.nip.io"
-#         echo "APP_INGRESS_HOST=$(kubectl -n ${{vars.NAMESPACE}} get ingress -o jsonpath="{.items[0].spec.tls[0].hosts[0]}")" >> "$GITHUB_ENV"
+#         echo "APP_INGRESS_HOST=$(kubectl -n ${{vars.NAMESPACE}} get ingress -o jsonpath="{.items[0].spec.tls[0].hosts[0]}")" >> "$GITHUB_OUTPUT"
           
       - name: Replace Tokens in Manifests
         uses: cschleiden/replace-tokens@v1
