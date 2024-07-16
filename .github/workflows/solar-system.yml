@@ -161,8 +161,8 @@ jobs:
       needs: docker
       uses: ./.github/workflows/reuse-deployment.yml
       with:
-        mongo_uri: ${{vars.MONGO_URI}}
-        k8s-manifests-dir: kubernetes/development/
+        mongo-uri: ${{vars.MONGO_URI}}
+        k8s-manifest-dir: kubernetes/development/
         environment: development
       secrets: 
         k8sconfig: ${{secrets.RUN_KUBECONFIG}}
