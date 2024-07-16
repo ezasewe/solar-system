@@ -159,8 +159,11 @@ jobs:
     dev-deploy:
       if: contains(github.ref, 'feature/')
       needs: docker
-      
       uses: ./.github/workflows/reuse-deployment.yml
+      secrets: 
+        k8sconfig: ${{secrets.RUN_KUBECONFIG}}
+        mongodb: ${{secrets.MONGO_PASSWORD}}
+      
     dev-integration-testing:
       name: Dev Integration Testing
       if: contains(github.ref, 'feature/')
