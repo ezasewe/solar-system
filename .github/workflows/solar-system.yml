@@ -160,6 +160,10 @@ jobs:
       if: contains(github.ref, 'feature/')
       needs: docker
       uses: ./.github/workflows/reuse-deployment.yml
+      with:
+        mongo_uri: ${{vars.MONGO_URI}}
+        k8s-manifests-dir: kubernetes/development/
+        environment: development
       secrets: 
         k8sconfig: ${{secrets.RUN_KUBECONFIG}}
         mongodb: ${{secrets.MONGO_PASSWORD}}
@@ -180,6 +184,10 @@ jobs:
       if: github.ref == 'refs/heads/main'
       needs: docker
       uses: ./.github/workflows/reuse-deployment.yml
+      with:
+        mongo_uri: ${{vars.MONGO_URI}}
+        k8s-manifests-dir: kubernetes/production/
+        environment: production
       secrets: 
         k8sconfig: ${{secrets.RUN_KUBECONFIG}}
         mongodb: ${{secrets.MONGO_PASSWORD}}
