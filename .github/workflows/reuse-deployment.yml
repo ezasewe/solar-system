@@ -20,6 +20,10 @@ on:
           default: development
           type: string
           required: true
+      outputs:
+        application-url:
+          description: the external url for accessing the app
+          value: ${{ jobs.reuse-deploy.outputs.APP_INGRESS_URL }}
       secrets:
         k8sconfig:
           required: true
